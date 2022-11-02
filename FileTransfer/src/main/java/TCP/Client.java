@@ -1,3 +1,5 @@
+package TCP;
+
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -16,7 +18,7 @@ public class Client {
         Socket socket = new Socket();
         socket.connect(new InetSocketAddress("localhost", 2000), 9000);
         Client T = new Client(socket);
-        T.sendFile(new File("dqw"));
+        T.sendFile(new File("./sauron.jpg"));
     }
 
     private Socket socket;

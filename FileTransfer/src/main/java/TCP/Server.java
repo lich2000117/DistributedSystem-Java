@@ -1,3 +1,5 @@
+package TCP;
+
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,7 +23,7 @@ public class Server {
         ServerSocket serverSocket = new ServerSocket(2000);
         Socket s = serverSocket.accept();
         Server T2 = new Server(s);
-        T2.saveFile(new File("./dqw2")); // safe file as dqw2
+        T2.saveFile(new File("./sauron2.jpg")); // safe file as dqw2
 
     }
 
