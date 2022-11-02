@@ -3,6 +3,7 @@ package TCP;
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.concurrent.TimeUnit;
 
 /**
  * TCP protocol, using Socket to transfer file.
@@ -11,24 +12,25 @@ import java.net.Socket;
  *
  * Message1: Send an Long double, indicate File Size first
  * Message2: While loop: send many small messages, with maximum length @param MAX_BUFFER
+ * Message3: between the while loop, server send receipt for previous data, so client can move on to next.
+ *
+ * Note: client and server keep the file size to be sent to determine if it is finished.
  */
 public class Client {
 
+    private static String ServerIP = "localhost";
+    private static int ServerPort = 2000;
+    private static final int MAX_BUFFER = 140;   // large buffer to reduce file loss
+    private static final String FilePath = "./TestFileClient/sauron.jpg";
+
     public static void main(String[] args) throws IOException {
         Socket socket = new Socket();
-        socket.connect(new InetSocketAddress("localhost", 2000), 9000);
-        Client T = new Client(socket);
-        T.sendFile(new File("./sauron.jpg"));
+        socket.connect(new InetSocketAddress(ServerIP, ServerPort), 9000);
+        sendFile(new File(FilePath), socket);
     }
 
-    private Socket socket;
-    private static final int MAX_BUFFER = 8192;
 
-    public Client(Socket socket) {
-        this.socket = socket;
-    }
-
-    public boolean sendFile(File file) {
+    public static boolean sendFile(File file, Socket socket) {
 
         boolean errorOnSave = false;
         long length = file.length();
@@ -37,10 +39,12 @@ public class Client {
 
             FileInputStream in = null;
             DataOutputStream out = null;
-
+            DataInputStream serverIn = null;
             try {
                 in = new FileInputStream(file);
-                out = new DataOutputStream(this.socket.getOutputStream());
+                out = new DataOutputStream(socket.getOutputStream());
+                serverIn = new DataInputStream(socket.getInputStream());
+
                 /** Message 1 **/
                 out.writeLong(length);
                 out.flush();
@@ -53,6 +57,12 @@ public class Client {
                     out.write(buffer, 0, read);
                     out.flush();
                     buffer = new byte[MAX_BUFFER];
+                    /** Message 3 **/
+                    // only move on next message if receive confirm from server.
+                    if (read != serverIn.readLong()){
+                        System.out.println("Server Received different message.");
+                    };
+
                 }
 
             } catch (FileNotFoundException e) {

@@ -1,12 +1,10 @@
 package TCP;
 
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.Time;
+import java.util.concurrent.TimeUnit;
 
 /**
  * TCP protocol, using Socket to transfer file.
@@ -16,27 +14,28 @@ import java.net.Socket;
  *
  * Message1: Receive an Long double, indicate File Size first
  * Message2: While loop: receive many small messages, with maximum length @param MAX_BUFFER
+ * Message3: between the while loop, server send receipt for previous data, so client can move on to next.
+ *
+ * Note: client and server keep the file size to be sent to determine if it is finished.
  */
 public class Server {
 
+    private static int ServerPort = 2000;
+    private static final int MAX_BUFFER = 140;   // large buffer to reduce file loss
+    private static final String FilePath = "./TestFileServer/sauron2.jpg";
+
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(2000);
+        ServerSocket serverSocket = new ServerSocket(ServerPort);
+        // blocking here
         Socket s = serverSocket.accept();
-        Server T2 = new Server(s);
-        T2.saveFile(new File("./sauron2.jpg")); // safe file as dqw2
-
+        saveFile(new File(FilePath), s);
     }
 
-    private Socket socket;
-    private static final int MAX_BUFFER = 8192;
 
-    public Server(Socket socket) {
-        this.socket = socket;
-    }
-
-    public boolean saveFile(File fileSave) {
+    public static boolean saveFile(File fileSave, Socket socket) {
         RandomAccessFile file = null;
         DataInputStream in = null;
+        DataOutputStream out = null;
 
         boolean errorOnSave = false;
         try {
@@ -44,7 +43,8 @@ public class Server {
 
             file.getChannel().lock(); // concurrency protection. Thread Safe.
 
-            in = new DataInputStream(this.socket.getInputStream());
+            in = new DataInputStream(socket.getInputStream());
+            out = new DataOutputStream(socket.getOutputStream());
             /** Message 1 **/
             long fileSize = in.readLong();
 
@@ -56,6 +56,9 @@ public class Server {
                 file.write(buffer, 0, read);
                 fileSize -= read;
                 buffer = new byte[MAX_BUFFER];
+                /** Message 3 **/
+                // send a message back to client to indicate how much data did the server receive.
+                out.writeLong(read);
             }
 
         } catch (FileNotFoundException e1) {

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/DistributedSystem-Java.iml" filepath="$PROJECT_DIR$/.idea/DistributedSystem-Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FileTransfer/FileTransfer.iml" filepath="$PROJECT_DIR$/FileTransfer/FileTransfer.iml" />
     </modules>
   </component>
 </project>
