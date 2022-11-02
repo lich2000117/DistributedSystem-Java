@@ -4,6 +4,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/FileTransfer/pom.xml" />
+        <option value="$PROJECT_DIR$/RMIDemo/pom.xml" />
+        <option value="$PROJECT_DIR$/ClientServer_encrypted/pom.xml" />
       </list>
     </option>
   </component>

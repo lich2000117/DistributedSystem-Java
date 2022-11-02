@@ -6,15 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="FileTransfer" />
-        <module name="RMIDemo" />
         <module name="ClientServer_encrypted" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ClientServer_encrypted" target="11" />
-      <module name="FileTransfer" target="11" />
-      <module name="RMIDemo" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>

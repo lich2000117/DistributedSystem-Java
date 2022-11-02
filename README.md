@@ -1,5 +1,10 @@
 # DistributedSystem Java
- 
+
+All files here are written in Java and based on Client and Server communication.
+
+
+All test files are runnable and includes client and server two programs.
+
 ## Contents:
 
 `FileTransfer`: 
@@ -19,6 +24,11 @@
 
 `ServerClient_JSON`: handshake protocol, Synchronous, Java implementation of Client-Server **text** transfer with JSON.
 
+`Encryption`: Encrypt messages between server and client in TCP synchronous transfer with JSON.
+
+`RMI`: RMI demo for a client and server doing remote math calculations.
+
+`JSON`: Client and Server exchange JSON formatted messages, TCP, synchronous.
 
 `TestFileClient`: File for testing purpose.
 

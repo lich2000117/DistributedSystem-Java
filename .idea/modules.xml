@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ClientServer_encrypted/ClientServer_encrypted.iml" filepath="$PROJECT_DIR$/ClientServer_encrypted/ClientServer_encrypted.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/DistributedSystem-Java.iml" filepath="$PROJECT_DIR$/.idea/DistributedSystem-Java.iml" />
       <module fileurl="file://$PROJECT_DIR$/FileTransfer/FileTransfer.iml" filepath="$PROJECT_DIR$/FileTransfer/FileTransfer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RMIDemo/RMIDemo.iml" filepath="$PROJECT_DIR$/RMIDemo/RMIDemo.iml" />
     </modules>
   </component>
 </project>
