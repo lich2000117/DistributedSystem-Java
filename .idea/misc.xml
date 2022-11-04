@@ -6,6 +6,10 @@
         <option value="$PROJECT_DIR$/FileTransfer/pom.xml" />
         <option value="$PROJECT_DIR$/RMIDemo/pom.xml" />
         <option value="$PROJECT_DIR$/ClientServer_encrypted/pom.xml" />
+        <option value="$PROJECT_DIR$/RMI/pom.xml" />
+        <option value="$PROJECT_DIR$/JSON/pom.xml" />
+        <option value="$PROJECT_DIR$/Encryption/pom.xml" />
+        <option value="$PROJECT_DIR$/FileDownload/pom.xml" />
       </list>
     </option>
   </component>

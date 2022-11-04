@@ -7,6 +7,7 @@ All test files are runnable and includes client and server two programs.
 
 ## Contents:
 
+
 `FileTransfer`: 
 - `TCP(Synchronous)`: 
   - File transfer, 
@@ -21,6 +22,9 @@ All test files are runnable and includes client and server two programs.
   - File IO (read from and write to local file).
   - Without HandShake Protocol, may result in data loss.
 
+`FileDownload`:
+similar to FileTransfer project, but this time it uses Json messages and client asks to download a file
+from server.
 
 `ServerClient_JSON`: handshake protocol, Synchronous, Java implementation of Client-Server **text** transfer with JSON.
 

@@ -8,13 +8,17 @@
         <outputRelativeToContentRoot value="true" />
         <module name="FileTransfer" />
         <module name="RMIDemo" />
+        <module name="SendingFile" />
+        <module name="FileTransfer (1)" />
         <module name="ClientServer_encrypted" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ClientServer_encrypted" target="11" />
       <module name="FileTransfer" target="11" />
+      <module name="FileTransfer (1)" target="11" />
       <module name="RMIDemo" target="11" />
+      <module name="SendingFile" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
